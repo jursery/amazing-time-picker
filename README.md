@@ -1,6 +1,6 @@
 # Amazing Time Picker (Clock) ![Build Status](https://travis-ci.org/owsolutions/amazing-time-picker.svg?branch=master) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A visual time picker for angular 2+ projects. You can use this timepicker with Angular 2, 4, 5 and Angular Material. **This project doesn't require angular material or any other dependencies**
+A visual time picker for angular 6 projects. Angular Material. **This project doesn't require angular material or any other dependencies**
 
 ## Install
 You need to install this repository as dependency and import it to your `app.module.ts` in `imports` section.
