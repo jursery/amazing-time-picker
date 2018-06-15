@@ -1,8 +1,8 @@
 {
   "name": "amazing-time-picker-angular6",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "license": "MIT",
-  "repository": "https://github.com/owsolutions/amazing-time-picker.git",
+  "repository": "https://github.com/garnachod/amazing-time-picker",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
