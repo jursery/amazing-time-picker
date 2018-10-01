@@ -6,7 +6,7 @@ A visual time picker for angular 6 projects. Angular Material. **This project do
 You need to install this repository as dependency and import it to your `app.module.ts` in `imports` section.
 
 ```
-npm install amazing-time-picker-angular6 --save
+npm install amazing-time-picker-mobile --save
 ```
 
 then, open your `app.module.ts` or other module that you want to use timepicker among, and import and add it to the `imports` section:
@@ -14,7 +14,7 @@ then, open your `app.module.ts` or other module that you want to use timepicker 
 ```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AmazingTimePickerModule } from 'amazing-time-picker'; // this line you need
+import { AmazingTimePickerModule } from 'amazing-time-picker-mobile'; // this line you need
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -44,14 +44,14 @@ After you have installed this module, you can use it within your html templates 
 You can also open a timepicker dialog programmatically. In order to open that, you need to import the service in your component:
 
 ```
-import { AmazingTimePickerService } from 'amazing-time-picker';
+import { AmazingTimePickerService } from 'amazing-time-picker-mobile';
 ```
 
 Then add it inside your `app.component.ts` or any other component that you want to use timepicker inside of that.
 
 ```
 import { Component } from '@angular/core';
-import { AmazingTimePickerService } from 'amazing-time-picker'; // this line you need
+import { AmazingTimePickerService } from 'amazing-time-picker-mobile'; // this line you need
 
 @Component({
   selector: 'app-root',

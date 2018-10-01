@@ -1,8 +1,9 @@
 {
-  "name": "amazing-time-picker-angular6",
+  "name": "amazing-time-picker-mobile",
   "version": "1.5.5",
+  "description": "A version of amazing-time-picker with better support for mobile applications",
   "license": "MIT",
-  "repository": "https://github.com/garnachod/amazing-time-picker",
+  "repository": "https://github.com/jursery/amazing-time-picker",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
