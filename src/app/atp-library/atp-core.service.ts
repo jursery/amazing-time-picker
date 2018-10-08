@@ -87,8 +87,8 @@ export class AtpCoreService {
    */
   public CalcDegrees (ele: any, parrentPos: any, step: number): number {
     const clock = {
-      width: ele.currentTarget.offsetWidth,
-      height: ele.currentTarget.offsetHeight
+      width: parrentPos.width,
+      height: parrentPos.height
     };
     const targetX = clock.width / 2;
     const targetY = clock.height / 2;
@@ -104,6 +104,8 @@ export class AtpCoreService {
     } else if (degMod < step / 2) {
       degrees = degrees - degMod;
     }
+    //console.log("CalcDegrees() degrees=" + degrees + ", clock width=" + clock.width
+    // + ", clock height=" + clock.height + ", clientX=" + ele.clientX + ", clientY=" + ele.clientY);
     return degrees;
   }
 }
