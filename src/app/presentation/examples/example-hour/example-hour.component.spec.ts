@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExamplePersianComponent } from './example-persian.component';
+import { ExampleHourComponent } from './example-hour.component';
 
-describe('ExamplePersianComponent', () => {
-  let component: ExamplePersianComponent;
-  let fixture: ComponentFixture<ExamplePersianComponent>;
+describe('ExampleHourComponent', () => {
+  let component: ExampleHourComponent;
+  let fixture: ComponentFixture<ExampleHourComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExamplePersianComponent ]
+      declarations: [ ExampleHourComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExamplePersianComponent);
+    fixture = TestBed.createComponent(ExampleHourComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
