@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { IClockNumber, IDisplayPreference, TimePickerConfig } from '../definitions';
 import { AtpCoreService } from '../atp-core.service';
 import { ITime } from '../definitions';
@@ -9,6 +9,8 @@ import { ITime } from '../definitions';
   styleUrls: ['./time-picker.component.scss']
 })
 export class TimePickerComponent implements OnInit {
+
+  @ViewChild('clockFace') clockFace: ElementRef;
 
   _ref: any;
   public subject: any = null;
@@ -34,6 +36,47 @@ export class TimePickerComponent implements OnInit {
   constructor(
     private core: AtpCoreService
   ) { }
+
+  @HostListener('touchstart', ['$event'])
+  @HostListener('mousedown', ['$event'])
+  onDown(e: MouseEvent | TouchEvent) {
+    const clockFaceRect = this.clockFace.nativeElement.getBoundingClientRect();
+    // get the target location (touch events are different due to multi-touch support)
+    const location = (e instanceof TouchEvent) ? e.changedTouches[0] : e;
+
+    // only react if this is a click on the clock face
+      if ((location.clientX >= clockFaceRect.left) && (location.clientX <= clockFaceRect.right)
+        && (location.clientY >= clockFaceRect.top) && (location.clientY <= clockFaceRect.bottom)) {
+        e.preventDefault();
+        this.isClicked = true;
+        this.getDegree(location);
+      }
+  }
+
+  @HostListener('touchmove', ['$event'])
+  @HostListener('mousemove', ['$event'])
+  onMove(e: MouseEvent | TouchEvent): void {
+    // only react if this is a drag that started on the clock face
+    if (this.isClicked) {
+      e.preventDefault();
+      if (e instanceof MouseEvent) {
+        this.getDegree(e);
+      } else if (e instanceof TouchEvent) {
+        this.getDegree(e.changedTouches[0]);
+      }
+    }
+  }
+
+  @HostListener('touchend', ['$event'])
+  @HostListener('mouseup', ['$event'])
+  onUp(e: MouseEvent | TouchEvent) {
+    // only react if this is the release for a click/touch that started on the clock face
+    if (this.isClicked) {
+      e.preventDefault();
+      this.isClicked = false;
+      this.setTime();
+    }
+  }
 
   public ParseStringToTime (time: string): void {
     time = (time === '' || time === undefined || time === null) ? this.time.hour + ':' + this.time.minute : time;
@@ -76,7 +119,6 @@ export class TimePickerComponent implements OnInit {
   }
 
   setTime() {
-    this.isClicked = false;
     if (this.config.changeToMinutes && this.clockType === 'hour') {
       this.clockType = 'minute';
       this.clockMaker();
@@ -85,13 +127,9 @@ export class TimePickerComponent implements OnInit {
 
   getDegree = (ele: any) => {
     const step = this.clockType === 'minute' ? 6 : 30;
-    const parrentPos = ele.currentTarget.getBoundingClientRect();
-    if (this.isClicked && (ele.currentTarget === ele.target || ele.target.nodeName === 'BUTTON')) {
-      const clock = {
-        width: ele.currentTarget.offsetWidth,
-        height: ele.currentTarget.offsetHeight
-      };
-      const degrees = this.core.CalcDegrees(ele, parrentPos, step);
+    const clockFaceRect = this.clockFace.nativeElement.getBoundingClientRect();
+    if (this.isClicked) {
+      const degrees = this.core.CalcDegrees(ele, clockFaceRect, step);
       let hour = this.time.hour,
           minute = this.time.minute;
 
@@ -117,10 +155,10 @@ export class TimePickerComponent implements OnInit {
         this.time.minute = minute;
         this.rotationClass(degrees);
         this.setActiveTime();
-      }else if (this.clockType === 'hour' && (hour === nowMinHour && minute <= nowMinMin)) {
+      } else if (this.clockType === 'hour' && (hour === nowMinHour && minute <= nowMinMin)) {
         this.time.hour = nowMinHour;
         this.time.minute = nowMinMin;
-      }else if (this.clockType === 'hour' && (hour === nowMaxHour && minute >= nowMaxMin)) {
+      } else if (this.clockType === 'hour' && (hour === nowMaxHour && minute >= nowMaxMin)) {
         this.time.hour = nowMaxHour;
         this.time.minute = nowMaxMin;
       }

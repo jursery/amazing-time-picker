@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExamplePersianComponent } from './example-persian.component';
+import { ExampleMaterialComponent } from './example-material.component';
 
-describe('ExamplePersianComponent', () => {
-  let component: ExamplePersianComponent;
-  let fixture: ComponentFixture<ExamplePersianComponent>;
+describe('ExampleMaterialComponent', () => {
+  let component: ExampleMaterialComponent;
+  let fixture: ComponentFixture<ExampleMaterialComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExamplePersianComponent ]
+      declarations: [ ExampleMaterialComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExamplePersianComponent);
+    fixture = TestBed.createComponent(ExampleMaterialComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,7 +17,7 @@ export class AtpCoreService {
           jDest = 59;
       if (i === nowMinHour) {
         j = nowMinMin;
-      }else if (i === nowMaxHour) {
+      } else if (i === nowMaxHour) {
         jDest = nowMaxMin;
       }
       for (j; j <= jDest; j++) {
@@ -87,8 +87,8 @@ export class AtpCoreService {
    */
   public CalcDegrees (ele: any, parrentPos: any, step: number): number {
     const clock = {
-      width: ele.currentTarget.offsetWidth,
-      height: ele.currentTarget.offsetHeight
+      width: parrentPos.width,
+      height: parrentPos.height
     };
     const targetX = clock.width / 2;
     const targetY = clock.height / 2;

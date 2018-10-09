@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AmazingTimePickerService } from '../../atp-library/atp-time-picker.service';
 
 @Component({
