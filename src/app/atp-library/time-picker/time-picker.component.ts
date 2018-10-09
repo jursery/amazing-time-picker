@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { IClockNumber, IDisplayPreference, TimePickerConfig } from '../definitions';
 import { AtpCoreService } from '../atp-core.service';
 import { ITime } from '../definitions';
@@ -42,26 +42,26 @@ export class TimePickerComponent implements OnInit {
   onDown(e: MouseEvent | TouchEvent) {
     const clockFaceRect = this.clockFace.nativeElement.getBoundingClientRect();
     // get the target location (touch events are different due to multi-touch support)
-    var location = (e instanceof TouchEvent) ? e.changedTouches[0] : e;
+    const location = (e instanceof TouchEvent) ? e.changedTouches[0] : e;
 
     // only react if this is a click on the clock face
-      if((location.clientX >= clockFaceRect.left) && (location.clientX <= clockFaceRect.right)
+      if ((location.clientX >= clockFaceRect.left) && (location.clientX <= clockFaceRect.right)
         && (location.clientY >= clockFaceRect.top) && (location.clientY <= clockFaceRect.bottom)) {
         e.preventDefault();
         this.isClicked = true;
         this.getDegree(location);
       }
   }
-  
+
   @HostListener('touchmove', ['$event'])
   @HostListener('mousemove', ['$event'])
   onMove(e: MouseEvent | TouchEvent): void {
     // only react if this is a drag that started on the clock face
-    if(this.isClicked) {
+    if (this.isClicked) {
       e.preventDefault();
-      if(e instanceof MouseEvent) {
+      if (e instanceof MouseEvent) {
         this.getDegree(e);
-      } else if(e instanceof TouchEvent) {
+      } else if (e instanceof TouchEvent) {
         this.getDegree(e.changedTouches[0]);
       }
     }
@@ -71,7 +71,7 @@ export class TimePickerComponent implements OnInit {
   @HostListener('mouseup', ['$event'])
   onUp(e: MouseEvent | TouchEvent) {
     // only react if this is the release for a click/touch that started on the clock face
-    if(this.isClicked) {
+    if (this.isClicked) {
       e.preventDefault();
       this.isClicked = false;
       this.setTime();
@@ -155,10 +155,10 @@ export class TimePickerComponent implements OnInit {
         this.time.minute = minute;
         this.rotationClass(degrees);
         this.setActiveTime();
-      }else if (this.clockType === 'hour' && (hour === nowMinHour && minute <= nowMinMin)) {
+      } else if (this.clockType === 'hour' && (hour === nowMinHour && minute <= nowMinMin)) {
         this.time.hour = nowMinHour;
         this.time.minute = nowMinMin;
-      }else if (this.clockType === 'hour' && (hour === nowMaxHour && minute >= nowMaxMin)) {
+      } else if (this.clockType === 'hour' && (hour === nowMaxHour && minute >= nowMaxMin)) {
         this.time.hour = nowMaxHour;
         this.time.minute = nowMaxMin;
       }

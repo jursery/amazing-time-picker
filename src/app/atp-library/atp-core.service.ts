@@ -17,7 +17,7 @@ export class AtpCoreService {
           jDest = 59;
       if (i === nowMinHour) {
         j = nowMinMin;
-      }else if (i === nowMaxHour) {
+      } else if (i === nowMaxHour) {
         jDest = nowMaxMin;
       }
       for (j; j <= jDest; j++) {
@@ -104,8 +104,6 @@ export class AtpCoreService {
     } else if (degMod < step / 2) {
       degrees = degrees - degMod;
     }
-    //console.log("CalcDegrees() degrees=" + degrees + ", clock width=" + clock.width
-    // + ", clock height=" + clock.height + ", clientX=" + ele.clientX + ", clientY=" + ele.clientY);
     return degrees;
   }
 }
